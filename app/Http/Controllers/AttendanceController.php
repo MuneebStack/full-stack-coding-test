@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FileRequest;
+use App\Models\Employee;
 use App\src\AppHumanResources\Attendance\Application\AttendanceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 class AttendanceController extends Controller
 {
     protected $attendanceService;
+    protected $perPage = 5;
 
     public function __construct(AttendanceService $attendanceService)
     {
@@ -27,6 +29,12 @@ class AttendanceController extends Controller
         }
 
         return response()->json(['message' => 'The attendance data has been successfully imported']);
+    }
+
+    public function getAllEmployees(): JsonResponse
+    {
+        $employees = Employee::select('id', 'name', 'email')->paginate($this->perPage);;
+        return response()->json($employees);
     }
 
     public function getEmployeeAttendance(Request $request, $employeeId)
