@@ -4,6 +4,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import ErrorPage from "@/pages/Errors/ErrorPage";
 import Home from "@/pages/Home";
 import Employees from "@/pages/Employees";
+import UploadData from "@/pages/UploadData";
 
 const apiBaseURL = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -30,6 +31,16 @@ export default createBrowserRouter(
                         return defer({
                             response: fetchLoaderData(apiURL)
                         });
+                    }}
+                />
+                <Route
+                    path="/upload-data"
+                    element={<UploadData />}
+                    action={async ({ request }) => {
+                        const formData = await request.formData();
+                        const apiURL = `${apiBaseURL}/upload-data`;
+                        const response = await fetchActionData(apiURL, formData);
+                        return response;
                     }}
                 />
             </Route >
