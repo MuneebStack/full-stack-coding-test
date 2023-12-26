@@ -5,6 +5,7 @@ import ErrorPage from "@/pages/Errors/ErrorPage";
 import Home from "@/pages/Home";
 import Employees from "@/pages/Employees";
 import UploadData from "@/pages/UploadData";
+import EmployeeAttendance from "@/pages/EmployeeAttendance";
 
 const apiBaseURL = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -41,6 +42,17 @@ export default createBrowserRouter(
                         const apiURL = `${apiBaseURL}/upload-data`;
                         const response = await fetchActionData(apiURL, formData);
                         return response;
+                    }}
+                />
+                <Route
+                    path="/employee-attendance/:employeeId"
+                    element={<EmployeeAttendance />}
+                    loader={async ({ request }) => {
+                        const id = new URL(request.url).pathname.split('/').at(-1);
+                        const apiURL = `${apiBaseURL}/employee-attendance/${id}`;
+                        return defer({
+                            response: fetchLoaderData(apiURL)
+                        });
                     }}
                 />
             </Route >
