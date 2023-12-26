@@ -18,12 +18,12 @@ class AttendanceController extends Controller
         $this->attendanceService = $attendanceService;
     }
 
-    public function uploadExcelAttendance(FileRequest $request): JsonResponse
+    public function uploadData(FileRequest $request): JsonResponse
     {
         $file = $request->file('file');
 
         try {
-            $this->attendanceService->uploadExcelAttendance($file);
+            $this->attendanceService->importDataFromExcelFile($file);
         } catch (\Throwable $th) {
             return response()->json(['error' => 'Error during import: ' . $th->getMessage()], 500);
         }

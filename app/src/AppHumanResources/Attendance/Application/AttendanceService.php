@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceService
 {
-    public function uploadExcelAttendance(UploadedFile $file): void
+    public function importDataFromExcelFile(UploadedFile $file): void
     {
         Excel::import(new FullImport, $file);
     }

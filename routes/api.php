@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/upload-excel-attendance', [AttendanceController::class, 'uploadExcelAttendance']);
+Route::post('/upload-data', [AttendanceController::class, 'uploadData']);
 Route::get('/employees', [AttendanceController::class, 'getAllEmployees']);
 Route::get('/employee-attendance/{id}', [AttendanceController::class, 'getEmployeeAttendance']);
 
