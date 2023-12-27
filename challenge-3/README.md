@@ -14,7 +14,7 @@ This Laravel project sets up a database schema for basic company organization. I
     composer install
     ```
 
-2. Run the following Artisan command to migrate the tables:
+3. Run the following Artisan command to migrate the tables:
 
     ```bash
     php artisan migrate

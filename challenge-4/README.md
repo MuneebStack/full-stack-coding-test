@@ -10,6 +10,12 @@ The service class is located in the `app/Services` directory, and a correspondin
 
 1. Clone the challenge-4 folder of the repository.
 
+2. Install Laravel dependencies:
+
+    ```bash
+    composer install
+    ```
+
 3. Run the PHPUnit test suite:
 
     ```bash
